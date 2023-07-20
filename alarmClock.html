@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>alarmClock</title>
+  </head>
+  <body>
+    <div>
+        <div id="time">hey there</div>
+      <fieldset>
+        to set alarm you need to enter time in following input and after submitting your alarm will be shown below submit button <br> <br>
+        <input type="number" id="inputHour" placeholder="enter hour"/><br><br>
+        <input type="number" id="inputMin" placeholder="enter minutes"/><br><br>
+        <input type="number" id="inputSec" placeholder="enter seconds"/><br>
+      </fieldset><br><br>
+      <button id="submit">submit</button><br><br>
+    </div>
+    <div id="sample">
+       
+    </div>
+    <script>
+      var ho;
+      var mi;
+      var se;
+      const audio = new Audio("favSong.mp3");
+    var currentTime 
+    function displayTime() {
+    currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  var timeString = hours + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
+  time.innerHTML =   timeString
+}
+function addLeadingZero(number) {
+  return number < 10 ? "0" + number : number;
+}
+setInterval(() => {
+    displayTime()
+}, 1000);
+
+submit.addEventListener("click", function (e) {
+        ho = parseInt(inputHour.value);
+        mi = parseInt(inputMin.value);
+        se = parseInt(inputSec.value);
+      setInterval ( ()=>{ if (ho === currentTime.getHours() && mi === currentTime.getMinutes() && se === currentTime.getSeconds()){
+            
+            audio.play();  
+            sample.innerHTML = ""
+           
+
+        }},100)
+        inputHour.value = ""
+        inputMin.value = ""
+        inputSec.value = ""
+        sample.innerHTML = `alarm for ${ho}:${mi}:${se} has been set`
+
+      });
+     
+    </script>
+  </body>
+</html>
